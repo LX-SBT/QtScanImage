@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = BrotherDSmobile720D
+TARGET = QtScanImage
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -32,9 +32,12 @@ HEADERS += \
         qtscanimage.h
 
 FORMS += \
+        about.ui \
         qtscanimage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=
