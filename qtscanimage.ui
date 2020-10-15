@@ -125,6 +125,32 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Device:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_device">
+              <property name="minimumSize">
+               <size>
+                <width>180</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1. connect the scanner to the computer&lt;/p&gt;&lt;p&gt;2. determine device with &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;scanimage -L&lt;/span&gt;&amp;quot; in the terminal&lt;/p&gt;&lt;p&gt;for example: &lt;span style=&quot; font-weight:600;&quot;&gt;dsseries:usb:0x04F9:0x60E0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="inputMask">
+               <string/>
+              </property>
+              <property name="text">
+               <string>dsseries:usb:0x04F9:0x60E0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QLabel" name="label_targetPath_2">
               <property name="text">
                <string>Target &amp;Path:</string>
@@ -1028,9 +1054,21 @@
      <string>&amp;About</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Preferences</string>
+    </property>
+    <addaction name="actionLanguage"/>
+   </widget>
+   <addaction name="menuEdit"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>comboBox_profile</tabstop>
