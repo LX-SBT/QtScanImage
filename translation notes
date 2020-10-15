@@ -1,0 +1,2 @@
+lupdate -pro BrotherDSmobile720D.pro -ts German.ts
+lrelease German.ts
