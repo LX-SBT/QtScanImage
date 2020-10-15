@@ -345,18 +345,17 @@ void QtScanImage::updateBachCounter()
 
 void QtScanImage::on_lineEdit_saveAsFileName_textChanged(const QString &arg1)
 {
-    qDebug() << arg1;
+    //qDebug() << arg1;
     updateBachCounter();
 }
 
 void QtScanImage::on_comboBox_saveAsType_currentTextChanged(const QString &arg1)
 {
-    qDebug() << arg1;
+    //qDebug() << arg1;
     updateBachCounter();
 }
 
 void QtScanImage::on_actionLanguage_triggered()
 {
-    qDebug()<<"show lang";
-    lang.show();//
+    lang.show();
 }

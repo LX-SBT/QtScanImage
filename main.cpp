@@ -36,7 +36,7 @@ QString getLanguage()
     {
         currentLine = file.readLine();
         currentLine.remove("\n");
-        qDebug() << currentLine;
+        //qDebug() << currentLine;
     }
     return langPath + currentLine + ".qm";
 }
