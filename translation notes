@@ -1,2 +1,9 @@
-lupdate -pro BrotherDSmobile720D.pro -ts German.ts
-lrelease German.ts
+Adding a new language:
+execute the following command (via terminal) in the project directory:
+        lupdate -pro BrotherDSmobile720D.pro -ts German.ts
+
+Create translations with QtLinguist and then execute the following command:
+        lrelease German.ts
+
+move the German.qm file to /home/[user]/.config/QtScanImage/languages/
+then the language should appear in the language selection
