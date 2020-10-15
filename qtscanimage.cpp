@@ -11,19 +11,14 @@ QtScanImage::QtScanImage(QWidget *parent) :
 {
     ui->setupUi(this);
     configPath = QDir::homePath() + "/.config/QtScanImage/profiles/";
+    langPath = QDir::homePath() + "/.config/QtScanImage/languages/";
     ui->label_targetPath->setText(QDir::homePath() + "/");
 
     // save UI-Default
     on_pushButton_saveProfile_clicked();
     ui->comboBox_profile->clear();
 
-    //QDir configDir(configPath);
-    //QStringList configFiles = configDir.entryList(QDir::Files);
-    //ui->comboBox_profile->addItems(configFiles);
-    //or in one line:
     ui->comboBox_profile->addItems(QDir(configPath).entryList(QDir::Files));
-    //qDebug() <<  QDir(configPath).entryList(QDir::Files).count();
-    //qDebug() << QDir(configPath);
     updateBachCounter();
     ui->comboBox_profile->setFocus();
 }
@@ -70,13 +65,10 @@ void QtScanImage::on_pushButton_scan_clicked()
     else
         cmd += " --batch=\"" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText() + "\"";
     cmd += " --batch-start=" + QString::number(ui->spinBox_startCount->value());
-    //cmd += " --batch-count=" + QString::number(ui->spinBox_pageCount->value());
-    cmd += " --device-name=dsseries:usb:0x04F9:0x60E2";
+    cmd += " --device-name=" + ui->lineEdit_device->text(); //dsseries:usb:0x04F9:0x60E2
     qDebug() << cmd;
     system(cmd.toUtf8().data());
 
-    // increment batch-counter by 2 if duplex else by 1
-    //ui->spinBox_startCount->setValue(ui->checkBox_source->isChecked() ? ui->spinBox_startCount->value() + 2: ui->spinBox_startCount->value() + 1);
     updateBachCounter();
 }
 
@@ -88,6 +80,7 @@ void QtScanImage::on_pushButton_saveProfile_clicked()
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
     QTextStream out(&file);
+    out << "device=" << ui->lineEdit_device->text() << "\n";
     out << "mode=" << ui->comboBox_mode->currentIndex() << "\n";
     out << "source=" << ui->checkBox_source->isChecked() << "\n";
     out << "targetpath=" << ui->label_targetPath->text() << "\n";
@@ -148,7 +141,6 @@ void QtScanImage::loadProfile()
     {
         QString currentLine = file.readLine();
         currentLine.remove("\n");
-        //qDebug() << currentLine;
         processLine(currentLine);
     }
     updateBachCounter();
@@ -158,6 +150,11 @@ void QtScanImage::processLine(QString cl)
 {
     // this function is used by the loadProfile()-function
     // to assign the value to the programm at runtime
+    if (cl.contains("device="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->lineEdit_device->setText(cl);
+    }
     if (cl.contains("mode="))
     {
         cl.remove(0, cl.indexOf('=')+1);
@@ -360,5 +357,6 @@ void QtScanImage::on_comboBox_saveAsType_currentTextChanged(const QString &arg1)
 
 void QtScanImage::on_actionLanguage_triggered()
 {
-    //
+    qDebug()<<"show lang";
+    lang.show();//
 }

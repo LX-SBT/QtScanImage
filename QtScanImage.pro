@@ -25,14 +25,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        about.cpp \
+        language_dialog.cpp \
         main.cpp \
         qtscanimage.cpp
 
 HEADERS += \
+        about.h \
+        language_dialog.h \
         qtscanimage.h
 
 FORMS += \
         about.ui \
+        language_dialog.ui \
         qtscanimage.ui
 
 # Default rules for deployment.

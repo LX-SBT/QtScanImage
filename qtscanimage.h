@@ -2,6 +2,7 @@
 #define QTSCANIMAGE_H
 
 #include <QMainWindow>
+#include "language_dialog.h"
 
 namespace Ui {
 class QtScanImage;
@@ -39,9 +40,11 @@ private slots:
 private:
     Ui::QtScanImage *ui;
     QString configPath;
+    QString langPath;
     void loadProfile();
     void processLine(QString);
     void updateBachCounter();
+    language_dialog lang;
 };
 
 #endif // QTSCANIMAGE_H
