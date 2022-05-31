@@ -9,20 +9,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>580</width>
+    <width>585</width>
     <height>635</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>580</width>
+    <width>585</width>
     <height>635</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>580</width>
-    <height>635</height>
+    <width>585</width>
+    <height>636</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -37,6 +37,138 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <item>
+       <widget class="QLabel" name="label_profile">
+        <property name="text">
+         <string>Profile</string>
+        </property>
+        <property name="buddy">
+         <cstring>comboBox_profile</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_profile">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string notr="true">Default</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_deleteProfile">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_saveProfile">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>save</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Device:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_device">
+        <property name="minimumSize">
+         <size>
+          <width>180</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1. connect the scanner to the computer&lt;/p&gt;&lt;p&gt;2. determine device with &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;scanimage -L&lt;/span&gt;&amp;quot; in the terminal&lt;/p&gt;&lt;p&gt;for example: &lt;span style=&quot; font-weight:600;&quot;&gt;dsseries:usb:0x04F9:0x60E0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="inputMask">
+         <string/>
+        </property>
+        <property name="text">
+         <string>dsseries:usb:0x04F9:0x60E0</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_targetPath_2">
+        <property name="text">
+         <string>Target &amp;Path:</string>
+        </property>
+        <property name="buddy">
+         <cstring>toolButton_getTargetPath</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_targetPath">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_getTargetPath">
+        <property name="text">
+         <string notr="true">...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_8">
       <item>
        <widget class="QTabWidget" name="tabWidget">
@@ -44,7 +176,7 @@
          <bool>false</bool>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="documentMode">
          <bool>false</bool>
@@ -61,135 +193,6 @@
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="label_profile">
-              <property name="text">
-               <string>Profile</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBox_profile">
-              <property name="minimumSize">
-               <size>
-                <width>150</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string notr="true">Default</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_deleteProfile">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>delete</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_saveProfile">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>save</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Device:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit_device">
-              <property name="minimumSize">
-               <size>
-                <width>180</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;1. connect the scanner to the computer&lt;/p&gt;&lt;p&gt;2. determine device with &amp;quot;&lt;span style=&quot; font-weight:600;&quot;&gt;scanimage -L&lt;/span&gt;&amp;quot; in the terminal&lt;/p&gt;&lt;p&gt;for example: &lt;span style=&quot; font-weight:600;&quot;&gt;dsseries:usb:0x04F9:0x60E0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="inputMask">
-               <string/>
-              </property>
-              <property name="text">
-               <string>dsseries:usb:0x04F9:0x60E0</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_targetPath_2">
-              <property name="text">
-               <string>Target &amp;Path:</string>
-              </property>
-              <property name="buddy">
-               <cstring>toolButton_getTargetPath</cstring>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_targetPath">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="toolButton_getTargetPath">
-              <property name="text">
-               <string notr="true">...</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -201,7 +204,49 @@
                    <string>Paper&amp;size</string>
                   </property>
                   <layout class="QGridLayout" name="gridLayout_2">
-                   <item row="0" column="0" colspan="2">
+                   <item row="1" column="1" colspan="2">
+                    <widget class="QDoubleSpinBox" name="doubleSpinBox_width">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
+                     <property name="maximum">
+                      <double>215.900000000000006</double>
+                     </property>
+                     <property name="value">
+                      <double>210.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="label_height">
+                     <property name="text">
+                      <string>&amp;Height</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>doubleSpinBox_height</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_width">
+                     <property name="text">
+                      <string>&amp;Width</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>doubleSpinBox_width</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0" colspan="3">
                     <widget class="QComboBox" name="comboBox_size">
                      <property name="currentIndex">
                       <number>0</number>
@@ -263,46 +308,16 @@
                      </item>
                     </widget>
                    </item>
-                   <item row="2" column="0">
-                    <widget class="QLabel" name="label_height">
-                     <property name="text">
-                      <string>&amp;Height</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>doubleSpinBox_height</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="1">
-                    <widget class="QDoubleSpinBox" name="doubleSpinBox_width">
-                     <property name="enabled">
-                      <bool>false</bool>
-                     </property>
-                     <property name="decimals">
-                      <number>1</number>
-                     </property>
-                     <property name="maximum">
-                      <double>215.900000000000006</double>
-                     </property>
-                     <property name="value">
-                      <double>210.000000000000000</double>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <widget class="QLabel" name="label_width">
-                     <property name="text">
-                      <string>&amp;Width</string>
-                     </property>
-                     <property name="buddy">
-                      <cstring>doubleSpinBox_width</cstring>
-                     </property>
-                    </widget>
-                   </item>
-                   <item row="2" column="1">
+                   <item row="2" column="1" colspan="2">
                     <widget class="QDoubleSpinBox" name="doubleSpinBox_height">
                      <property name="enabled">
                       <bool>false</bool>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
                      </property>
                      <property name="decimals">
                       <number>1</number>
@@ -467,7 +482,7 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="label_filename">
                   <property name="text">
                    <string>File&amp;name:</string>
                   </property>
@@ -559,48 +574,6 @@
              <string>Enhancement:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_4">
-             <item row="0" column="3">
-              <widget class="QSpinBox" name="spinBox_resolution">
-               <property name="minimum">
-                <number>75</number>
-               </property>
-               <property name="maximum">
-                <number>600</number>
-               </property>
-               <property name="value">
-                <number>300</number>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="3">
-              <widget class="QSpinBox" name="spinBox_green">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="1">
-              <widget class="QSlider" name="horizontalSlider_blue">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="0">
               <widget class="QLabel" name="label_contrast">
                <property name="locale">
@@ -611,6 +584,35 @@
                </property>
                <property name="buddy">
                 <cstring>spinBox_contrast</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="0" column="1">
+              <widget class="QSlider" name="horizontalSlider_resolution">
+               <property name="minimum">
+                <number>75</number>
+               </property>
+               <property name="maximum">
+                <number>600</number>
+               </property>
+               <property name="value">
+                <number>300</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
                </property>
               </widget>
              </item>
@@ -630,19 +632,6 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="3">
-              <widget class="QSpinBox" name="spinBox_brightness">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
              <item row="8" column="0">
               <widget class="QLabel" name="label_green">
                <property name="text">
@@ -653,8 +642,8 @@
                </property>
               </widget>
              </item>
-             <item row="9" column="3">
-              <widget class="QSpinBox" name="spinBox_blue">
+             <item row="1" column="3">
+              <widget class="QSpinBox" name="spinBox_brightness">
                <property name="minimum">
                 <number>-100</number>
                </property>
@@ -663,81 +652,6 @@
                </property>
                <property name="value">
                 <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_blue">
-               <property name="text">
-                <string>&amp;Blue-Gamma</string>
-               </property>
-               <property name="buddy">
-                <cstring>spinBox_blue</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="3">
-              <widget class="QSpinBox" name="spinBox_red">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSlider" name="horizontalSlider_contrast">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSlider" name="horizontalSlider_brightness">
-               <property name="minimum">
-                <number>-100</number>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>0</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_brightness">
-               <property name="text">
-                <string>Br&amp;ightness</string>
-               </property>
-               <property name="buddy">
-                <cstring>spinBox_brightness</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_resolution">
-               <property name="text">
-                <string>&amp;Resolution (dpi)</string>
-               </property>
-               <property name="buddy">
-                <cstring>spinBox_resolution</cstring>
                </property>
               </widget>
              </item>
@@ -764,8 +678,8 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="3">
-              <widget class="QSpinBox" name="spinBox_contrast">
+             <item row="9" column="3">
+              <widget class="QSpinBox" name="spinBox_blue">
                <property name="minimum">
                 <number>-100</number>
                </property>
@@ -787,8 +701,125 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QSlider" name="horizontalSlider_resolution">
+             <item row="1" column="1">
+              <widget class="QSlider" name="horizontalSlider_brightness">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QSpinBox" name="spinBox_contrast">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3">
+              <widget class="QSpinBox" name="spinBox_red">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="3">
+              <widget class="QSpinBox" name="spinBox_green">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_resolution">
+               <property name="text">
+                <string>&amp;Resolution (dpi)</string>
+               </property>
+               <property name="buddy">
+                <cstring>spinBox_resolution</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QSlider" name="horizontalSlider_blue">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_blue">
+               <property name="text">
+                <string>&amp;Blue-Gamma</string>
+               </property>
+               <property name="buddy">
+                <cstring>spinBox_blue</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_brightness">
+               <property name="text">
+                <string>Br&amp;ightness</string>
+               </property>
+               <property name="buddy">
+                <cstring>spinBox_brightness</cstring>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSlider" name="horizontalSlider_contrast">
+               <property name="minimum">
+                <number>-100</number>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>0</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QSpinBox" name="spinBox_resolution">
                <property name="minimum">
                 <number>75</number>
                </property>
@@ -798,23 +829,7 @@
                <property name="value">
                 <number>300</number>
                </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
               </widget>
-             </item>
-             <item row="3" column="0">
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </widget>
@@ -849,190 +864,168 @@
          <attribute name="title">
           <string>Convert</string>
          </attribute>
-         <widget class="QCheckBox" name="checkBox_del_sf">
-          <property name="geometry">
-           <rect>
-            <x>9</x>
-            <y>453</y>
-            <width>138</width>
-            <height>24</height>
-           </rect>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;delete source files after convertion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>delete source files</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_compress">
-          <property name="geometry">
-           <rect>
-            <x>50</x>
-            <y>90</y>
-            <width>59</width>
-            <height>18</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Compress</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="comboBox_compress">
-          <property name="geometry">
-           <rect>
-            <x>130</x>
-            <y>90</y>
-            <width>79</width>
-            <height>26</height>
-           </rect>
-          </property>
-          <item>
-           <property name="text">
-            <string notr="true">None</string>
-           </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="5" column="2">
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
           </item>
-          <item>
-           <property name="text">
-            <string notr="true">BZip</string>
-           </property>
+          <item row="2" column="6">
+           <widget class="QSpinBox" name="spinBox__quality">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>60</number>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string notr="true">Fax</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">Group4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">JPEG</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">JPEG2000</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">Lossless</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">LZW</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">RLE</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string notr="true">Zip</string>
-           </property>
-          </item>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>9</x>
-            <y>9</y>
-            <width>193</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_12">
-           <item>
-            <widget class="QLabel" name="label_quality">
+          <item row="3" column="3">
+           <widget class="QComboBox" name="comboBox_compress">
+            <item>
              <property name="text">
-              <string>&amp;Quality</string>
+              <string notr="true">None</string>
              </property>
-             <property name="buddy">
-              <cstring>spinBox__quality</cstring>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">BZip</string>
              </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="horizontalSlider_quality">
-             <property name="minimum">
-              <number>1</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Fax</string>
              </property>
-             <property name="maximum">
-              <number>100</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Group4</string>
              </property>
-             <property name="value">
-              <number>60</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">JPEG</string>
              </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">JPEG2000</string>
              </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox__quality">
-             <property name="minimum">
-              <number>1</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Lossless</string>
              </property>
-             <property name="maximum">
-              <number>100</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">LZW</string>
              </property>
-             <property name="value">
-              <number>60</number>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">RLE</string>
              </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QPushButton" name="pushButton_convert">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>480</y>
-            <width>565</width>
-            <height>26</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Convert</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="tab_ocr">
-         <attribute name="title">
-          <string>OCR</string>
-         </attribute>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>40</y>
-            <width>82</width>
-            <height>23</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>OCR</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>201</width>
-            <height>17</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>optical character recognition</string>
-          </property>
-         </widget>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Zip</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBox_quality">
+            <property name="text">
+             <string>&amp;Quality</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_compress">
+            <property name="text">
+             <string>Compression</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QSlider" name="horizontalSlider_quality">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>60</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QToolButton" name="toolButton_getSourceFile">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="6">
+           <widget class="QPushButton" name="pushButton_convert">
+            <property name="text">
+             <string>Convert</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QCheckBox" name="checkBox_del_sf">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;delete source files after convertion&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>delete source files</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="lineEdit_source"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_source">
+            <property name="text">
+             <string>&amp;Source</string>
+            </property>
+            <property name="buddy">
+             <cstring>lineEdit_source</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_target">
+            <property name="text">
+             <string>Target</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="lineEdit_target"/>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>
@@ -1045,7 +1038,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>580</width>
+     <width>585</width>
      <height>23</height>
     </rect>
    </property>
@@ -1080,7 +1073,6 @@
   <tabstop>doubleSpinBox_width</tabstop>
   <tabstop>doubleSpinBox_height</tabstop>
   <tabstop>doubleSpinBox_top_offset</tabstop>
-  <tabstop>doubleSpinBox_left_offset</tabstop>
   <tabstop>lineEdit_saveAsFileName</tabstop>
   <tabstop>comboBox_saveAsType</tabstop>
   <tabstop>spinBox_startCount</tabstop>
@@ -1096,55 +1088,22 @@
   <tabstop>spinBox_green</tabstop>
   <tabstop>horizontalSlider_blue</tabstop>
   <tabstop>spinBox_blue</tabstop>
-  <tabstop>checkBox</tabstop>
  </tabstops>
  <resources/>
  <connections>
   <connection>
-   <sender>horizontalSlider_resolution</sender>
+   <sender>spinBox_resolution</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>spinBox_resolution</receiver>
+   <receiver>horizontalSlider_resolution</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>489</x>
+     <x>546</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
      <y>342</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>340</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_brightness</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>spinBox_brightness</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>489</x>
-     <y>372</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>372</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_contrast</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>spinBox_contrast</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>489</x>
-     <y>402</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>404</y>
     </hint>
    </hints>
   </connection>
@@ -1155,28 +1114,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>489</x>
-     <y>462</y>
+     <x>488</x>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
-     <x>549</x>
-     <y>465</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>horizontalSlider_green</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>spinBox_green</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>489</x>
-     <y>492</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>497</y>
+     <x>546</x>
+     <y>478</y>
     </hint>
    </hints>
   </connection>
@@ -1187,92 +1130,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>489</x>
-     <y>522</y>
+     <x>488</x>
+     <y>538</y>
     </hint>
     <hint type="destinationlabel">
-     <x>549</x>
-     <y>527</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox_resolution</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSlider_resolution</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>549</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>342</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox_brightness</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSlider_brightness</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>549</x>
-     <y>372</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>372</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox_contrast</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSlider_contrast</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>549</x>
-     <y>404</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>402</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox_red</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSlider_red</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>549</x>
-     <y>465</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>462</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBox_green</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSlider_green</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>549</x>
-     <y>497</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>489</x>
-     <y>492</y>
+     <x>546</x>
+     <y>544</y>
     </hint>
    </hints>
   </connection>
@@ -1283,28 +1146,44 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>549</x>
-     <y>527</y>
+     <x>546</x>
+     <y>544</y>
     </hint>
     <hint type="destinationlabel">
-     <x>489</x>
-     <y>522</y>
+     <x>488</x>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSlider_quality</sender>
+   <sender>spinBox_red</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>spinBox__quality</receiver>
+   <receiver>horizontalSlider_red</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>102</x>
-     <y>124</y>
+     <x>546</x>
+     <y>478</y>
     </hint>
     <hint type="destinationlabel">
-     <x>192</x>
-     <y>122</y>
+     <x>488</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_contrast</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_contrast</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>546</x>
+     <y>414</y>
     </hint>
    </hints>
   </connection>
@@ -1315,12 +1194,156 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>189</x>
-     <y>135</y>
+     <x>531</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>123</x>
-     <y>131</y>
+     <x>212</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_resolution</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_resolution</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>546</x>
+     <y>348</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_green</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_green</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>505</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>546</x>
+     <y>511</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_green</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_green</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>546</x>
+     <y>511</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>505</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_brightness</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox_brightness</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>546</x>
+     <y>381</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_brightness</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_brightness</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>546</x>
+     <y>381</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>375</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_contrast</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>horizontalSlider_contrast</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>546</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>488</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSlider_quality</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>spinBox__quality</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>531</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_quality</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>horizontalSlider_quality</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_quality</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBox__quality</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>33</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>204</y>
     </hint>
    </hints>
   </connection>

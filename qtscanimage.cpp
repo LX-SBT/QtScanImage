@@ -2,8 +2,8 @@
 #include "ui_qtscanimage.h"
 #include <QFile>
 #include <QFileDialog>
-#include <stdlib.h>
 #include <QDebug>
+#include <QProcess>
 
 QtScanImage::QtScanImage(QWidget *parent) :
     QMainWindow(parent),
@@ -14,13 +14,14 @@ QtScanImage::QtScanImage(QWidget *parent) :
     langPath = QDir::homePath() + "/.config/QtScanImage/languages/";
     ui->label_targetPath->setText(QDir::homePath() + "/");
 
+    ui->comboBox_profile->clear();
+    updateProfiles();
+    ui->comboBox_profile->setFocus();
+    ui->lineEdit_source->setText(QString( ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText()).replace("%d","*"));
+    ui->lineEdit_target->setText(QString( ui->lineEdit_saveAsFileName->text() + ".pdf").remove("%d"));
+
     // save UI-Default
     on_pushButton_saveProfile_clicked();
-    ui->comboBox_profile->clear();
-
-    ui->comboBox_profile->addItems(QDir(configPath).entryList(QDir::Files));
-    updateBachCounter();
-    ui->comboBox_profile->setFocus();
 }
 
 QtScanImage::~QtScanImage()
@@ -39,35 +40,35 @@ void QtScanImage::on_toolButton_getTargetPath_clicked()
 
 void QtScanImage::on_pushButton_scan_clicked()
 {
-    //scanimage --resolution 200 --contrast 50 --source ADF --batch=document-p%d.tiff
-    QString cmd = "scanimage ";
-    cmd += " --mode ";
+    QProcess process;
+    QStringList arguments;
+
     switch (ui->comboBox_mode->currentIndex())
     {
-        case 0: cmd += "LineArt";break;
-        case 1: cmd += "Gray";break;
-        case 2: cmd += "Color";break;
+        case 0: arguments.append(" --mode LineArt");break;
+        case 1: arguments.append(" --mode Gray");break;
+        case 2: arguments.append(" --mode Color");break;
     }
-    ui->checkBox_source->isChecked() ? cmd += " --source Duplex" : cmd += " --source ADF";
-    cmd += " -l " + QString::number(ui->doubleSpinBox_left_offset->value());
-    cmd += " -t " + QString::number(ui->doubleSpinBox_top_offset->value());
-    cmd += " -x " + QString::number(ui->doubleSpinBox_width->value());
-    cmd += " -y " + QString::number(ui->doubleSpinBox_height->value());
-    cmd += " --format=" + ui->comboBox_saveAsType->currentText().remove(0,1);
-    if (ui->horizontalSlider_resolution->value() != 300) cmd += " --resolution " + QString::number(ui->horizontalSlider_resolution->value());
-    if (ui->horizontalSlider_brightness->value() != 0) cmd += " --brightness " + QString::number(ui->horizontalSlider_brightness->value());
-    if (ui->horizontalSlider_contrast->value() != 0) cmd += " --contrast " + QString::number(ui->horizontalSlider_contrast->value());
-    if (ui->horizontalSlider_red->value() != 0) cmd += " --red-gamma-table " + QString::number(ui->horizontalSlider_red->value());
-    if (ui->horizontalSlider_green->value() != 0) cmd += " --green-gamma-table " + QString::number(ui->horizontalSlider_green->value());
-    if (ui->horizontalSlider_blue->value() != 0) cmd += " --blue-gamma-table " + QString::number(ui->horizontalSlider_blue->value());
+    ui->checkBox_source->isChecked() ? arguments.append(" --source Duplex") : arguments.append(" --source ADF");
+    arguments.append(" -l " + QString::number(ui->doubleSpinBox_left_offset->value()));
+    arguments.append(" -t " + QString::number(ui->doubleSpinBox_top_offset->value()));
+    arguments.append(" -x " + QString::number(ui->doubleSpinBox_width->value()));
+    arguments.append(" -y " + QString::number(ui->doubleSpinBox_height->value()));
+    arguments.append(" --format=" + ui->comboBox_saveAsType->currentText().remove(0,1));
+    if (ui->horizontalSlider_resolution->value() != 300) arguments.append(" --resolution " + QString::number(ui->horizontalSlider_resolution->value()));
+    if (ui->horizontalSlider_brightness->value() != 0) arguments.append(" --brightness " + QString::number(ui->horizontalSlider_brightness->value()));
+    if (ui->horizontalSlider_contrast->value() != 0) arguments.append(" --contrast " + QString::number(ui->horizontalSlider_contrast->value()));
+    if (ui->horizontalSlider_red->value() != 0) arguments.append(" --red-gamma-table " + QString::number(ui->horizontalSlider_red->value()));
+    if (ui->horizontalSlider_green->value() != 0) arguments.append(" --green-gamma-table " + QString::number(ui->horizontalSlider_green->value()));
+    if (ui->horizontalSlider_blue->value() != 0) arguments.append(" --blue-gamma-table " + QString::number(ui->horizontalSlider_blue->value()));
     if (ui->label_targetPath->text() !="")
-        cmd += " --batch=" + ui->label_targetPath->text() + "/" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText();
+        arguments.append(" --batch=" + ui->label_targetPath->text() + "/" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText());
     else
-        cmd += " --batch=\"" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText() + "\"";
-    cmd += " --batch-start=" + QString::number(ui->spinBox_startCount->value());
-    cmd += " --device-name=" + ui->lineEdit_device->text(); //dsseries:usb:0x04F9:0x60E2
-    qDebug() << cmd;
-    system(cmd.toUtf8().data());
+        arguments.append(" --batch=\"" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText() + "\"");
+    arguments.append(" --batch-start=" + QString::number(ui->spinBox_startCount->value()));
+    arguments.append(" --device-name=" + ui->lineEdit_device->text()); //dsseries:usb:0x04F9:0x60E2
+    qDebug() << arguments;
+    process.startDetached("scanimage", arguments);
 
     updateBachCounter();
 }
@@ -98,8 +99,16 @@ void QtScanImage::on_pushButton_saveProfile_clicked()
     out << "top=" << ui->doubleSpinBox_top_offset->value() << "\n";
     out << "width=" << ui->doubleSpinBox_width->value() << "\n";
     out << "height=" << ui->doubleSpinBox_height->value() << "\n";
+    out << "convert_source=" << ui->lineEdit_source->text() << "\n";
+    out << "convert_target=" << ui->lineEdit_target->text() << "\n";
+    out << "convert_quality=" << ui->checkBox_quality->isChecked() << "\n";
+    out << "convert_quality_value=" << ui->horizontalSlider_quality->value() << "\n";
+    out << "convert_compression=" << ui->comboBox_compress->currentText() << "\n";
+    out << "convert_del_source=" << ui->checkBox_del_sf->isChecked() << "\n";
+
     qDebug() << "File saved: " + filePath;
     ui->pushButton_deleteProfile->setEnabled(true);
+    updateProfiles();
 }
 
 void QtScanImage::on_pushButton_deleteProfile_clicked()
@@ -241,6 +250,36 @@ void QtScanImage::processLine(QString cl)
         cl.remove(0, cl.indexOf('=')+1);
         ui->doubleSpinBox_height->setValue(cl.toDouble());
     }
+    if (cl.contains("convert_source="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->lineEdit_source->setText(cl);
+    }
+    if (cl.contains("convert_target="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->lineEdit_target->setText(cl);
+    }
+    if (cl.contains("convert_quality="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->checkBox_quality->setChecked(cl.toInt());
+    }
+    if (cl.contains("convert_quality_value="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->horizontalSlider_quality->setValue(cl.toInt());
+    }
+    if (cl.contains("convert_compression="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->comboBox_compress->setCurrentText(cl);
+    }
+    if (cl.contains("convert_del_source="))
+    {
+        cl.remove(0, cl.indexOf('=')+1);
+        ui->checkBox_del_sf->setChecked(cl.toInt());
+    }
 }
 
 void QtScanImage::on_comboBox_size_currentIndexChanged(int index)
@@ -305,8 +344,13 @@ void QtScanImage::on_comboBox_size_currentIndexChanged(int index)
 
 void QtScanImage::on_pushButton_convert_clicked()
 {
-    // convert to pdf & compress
-    //convert -quality 60 -compress jpeg out*.png out.pdf
+    QProcess process;
+    QStringList arguments;
+    if (ui->checkBox_quality->isChecked()) arguments.append(" -quality " + QString::number(ui->spinBox__quality->value()));
+    if (ui->comboBox_compress->currentIndex() != 0) arguments.append(" -compress " + ui->comboBox_compress->currentText());
+    arguments.append(" " + ui->lineEdit_source->text());
+    arguments.append(" " + ui->lineEdit_target->text());
+    process.startDetached("convert", arguments);
 }
 
 void QtScanImage::updateBachCounter()
@@ -343,15 +387,26 @@ void QtScanImage::updateBachCounter()
     }
 }
 
+void QtScanImage::updateProfiles()
+{
+    QString currentProfile = ui->comboBox_profile->currentText();
+    if (currentProfile == "")
+        currentProfile = "Default";
+    ui->comboBox_profile->clear();
+    ui->comboBox_profile->addItems(QDir(configPath).entryList(QDir::Files));
+    ui->comboBox_profile->setCurrentText(currentProfile);
+    updateBachCounter();
+}
+
 void QtScanImage::on_lineEdit_saveAsFileName_textChanged(const QString &arg1)
 {
-    //qDebug() << arg1;
+    qDebug() << arg1;
     updateBachCounter();
 }
 
 void QtScanImage::on_comboBox_saveAsType_currentTextChanged(const QString &arg1)
 {
-    //qDebug() << arg1;
+    qDebug() << arg1;
     updateBachCounter();
 }
 
@@ -359,3 +414,15 @@ void QtScanImage::on_actionLanguage_triggered()
 {
     lang.show();
 }
+
+void QtScanImage::on_toolButton_getSourceFile_clicked()
+{
+    /*QString tp = QFileDialog::getExistingDirectory(this,"Target path",QDir::homePath() + "/",
+                                                   QFileDialog::ShowDirsOnly
+                                                   | QFileDialog::DontResolveSymlinks);*/
+    QString tp = QFileDialog::getOpenFileName(this,"Source file",
+                                             ui->label_targetPath->text(),
+                                              "*.pnm, *.jpeg, *.jpg, *.png, *.tif, *.tiff");
+    ui->lineEdit_source->setText(tp);
+}
+

@@ -37,6 +37,8 @@ private slots:
 
     void on_actionLanguage_triggered();
     
+    void on_toolButton_getSourceFile_clicked();
+
 private:
     Ui::QtScanImage *ui;
     QString configPath;
@@ -44,6 +46,7 @@ private:
     void loadProfile();
     void processLine(QString);
     void updateBachCounter();
+    void updateProfiles();
     language_dialog lang;
 };
 
