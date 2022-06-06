@@ -40,35 +40,60 @@ void QtScanImage::on_toolButton_getTargetPath_clicked()
 
 void QtScanImage::on_pushButton_scan_clicked()
 {
+    /* if device not found with: sane-find-scanner
+    modprobe sg
+
+    for permanent
+    echo 'sg' | sudo tee /etc/modules-load.d/sg.conf
+    */
     QProcess process;
     QStringList arguments;
 
     switch (ui->comboBox_mode->currentIndex())
     {
-        case 0: arguments.append(" --mode LineArt");break;
-        case 1: arguments.append(" --mode Gray");break;
-        case 2: arguments.append(" --mode Color");break;
+        case 0: arguments << "--mode" << "LineArt";break;
+        case 1: arguments << "--mode" << "Gray";break;
+        case 2: arguments << "--mode" << "Color";break;
     }
-    ui->checkBox_source->isChecked() ? arguments.append(" --source Duplex") : arguments.append(" --source ADF");
-    arguments.append(" -l " + QString::number(ui->doubleSpinBox_left_offset->value()));
-    arguments.append(" -t " + QString::number(ui->doubleSpinBox_top_offset->value()));
-    arguments.append(" -x " + QString::number(ui->doubleSpinBox_width->value()));
-    arguments.append(" -y " + QString::number(ui->doubleSpinBox_height->value()));
-    arguments.append(" --format=" + ui->comboBox_saveAsType->currentText().remove(0,1));
-    if (ui->horizontalSlider_resolution->value() != 300) arguments.append(" --resolution " + QString::number(ui->horizontalSlider_resolution->value()));
-    if (ui->horizontalSlider_brightness->value() != 0) arguments.append(" --brightness " + QString::number(ui->horizontalSlider_brightness->value()));
-    if (ui->horizontalSlider_contrast->value() != 0) arguments.append(" --contrast " + QString::number(ui->horizontalSlider_contrast->value()));
-    if (ui->horizontalSlider_red->value() != 0) arguments.append(" --red-gamma-table " + QString::number(ui->horizontalSlider_red->value()));
-    if (ui->horizontalSlider_green->value() != 0) arguments.append(" --green-gamma-table " + QString::number(ui->horizontalSlider_green->value()));
-    if (ui->horizontalSlider_blue->value() != 0) arguments.append(" --blue-gamma-table " + QString::number(ui->horizontalSlider_blue->value()));
+    ui->checkBox_source->isChecked() ? arguments << "--source" << "Duplex" : arguments << "--source" << "ADF";
+    arguments << "-l" << QString::number(ui->doubleSpinBox_left_offset->value());
+    arguments << "-t" << QString::number(ui->doubleSpinBox_top_offset->value());
+    arguments << "-x" << QString::number(ui->doubleSpinBox_width->value());
+    arguments << "-y" << QString::number(ui->doubleSpinBox_height->value());
+    arguments << "--format=" + ui->comboBox_saveAsType->currentText().remove(0,1);
+    if (ui->horizontalSlider_resolution->value() != 300) arguments << "--resolution" << QString::number(ui->horizontalSlider_resolution->value());
+    if (ui->horizontalSlider_brightness->value() != 0) arguments << "--brightness" << QString::number(ui->horizontalSlider_brightness->value());
+    if (ui->horizontalSlider_contrast->value() != 0) arguments << "--contrast" << QString::number(ui->horizontalSlider_contrast->value());
+    if (ui->horizontalSlider_red->value() != 0) arguments << "--red-gamma-table" << QString::number(ui->horizontalSlider_red->value());
+    if (ui->horizontalSlider_green->value() != 0) arguments << "--green-gamma-table" << QString::number(ui->horizontalSlider_green->value());
+    if (ui->horizontalSlider_blue->value() != 0) arguments << "--blue-gamma-table" << QString::number(ui->horizontalSlider_blue->value());
+
     if (ui->label_targetPath->text() !="")
-        arguments.append(" --batch=" + ui->label_targetPath->text() + "/" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText());
+        arguments << "--batch=" + ui->label_targetPath->text() + "/" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText();
     else
-        arguments.append(" --batch=\"" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText() + "\"");
-    arguments.append(" --batch-start=" + QString::number(ui->spinBox_startCount->value()));
-    arguments.append(" --device-name=" + ui->lineEdit_device->text()); //dsseries:usb:0x04F9:0x60E2
-    qDebug() << arguments;
-    process.startDetached("scanimage", arguments);
+        arguments << "--batch=\"" + ui->lineEdit_saveAsFileName->text() + ui->comboBox_saveAsType->currentText() + "\"";
+
+    arguments << "--batch-start=" + QString::number(ui->spinBox_startCount->value());
+    arguments << "--device-name=" + ui->lineEdit_device->text(); //dsseries:usb:0x04F9:0x60E2
+
+    //qDebug() << arguments;
+    //qDebug() << process.startDetached("scanimage", arguments);
+    process.start("scanimage", arguments);
+    process.waitForFinished();
+
+    if (process.errorString() != "Unknown error")
+    {
+        ui->plainTextEdit_output->appendPlainText("Error: ");
+        ui->plainTextEdit_output->appendPlainText(process.errorString());
+    }
+    ui->plainTextEdit_output->appendPlainText("Arguments: ");
+    ui->plainTextEdit_output->appendPlainText(arguments.join(" "));
+    ui->plainTextEdit_output->appendPlainText("\nRead all standard output:");
+    ui->plainTextEdit_output->appendPlainText(process.readAllStandardOutput());
+    ui->plainTextEdit_output->appendPlainText("Read all standard error:");
+    ui->plainTextEdit_output->appendPlainText(process.readAllStandardError());
+    ui->plainTextEdit_output->appendPlainText("Read all:");
+    ui->plainTextEdit_output->appendPlainText(process.readAll());
 
     updateBachCounter();
 }
@@ -350,7 +375,7 @@ void QtScanImage::on_pushButton_convert_clicked()
     if (ui->comboBox_compress->currentIndex() != 0) arguments.append(" -compress " + ui->comboBox_compress->currentText());
     arguments.append(" " + ui->lineEdit_source->text());
     arguments.append(" " + ui->lineEdit_target->text());
-    process.startDetached("convert", arguments);
+    qDebug() << process.startDetached("convert", arguments);
 }
 
 void QtScanImage::updateBachCounter()
