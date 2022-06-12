@@ -371,10 +371,10 @@ void QtScanImage::on_pushButton_convert_clicked()
 {
     QProcess process;
     QStringList arguments;
-    if (ui->checkBox_quality->isChecked()) arguments.append(" -quality " + QString::number(ui->spinBox__quality->value()));
-    if (ui->comboBox_compress->currentIndex() != 0) arguments.append(" -compress " + ui->comboBox_compress->currentText());
-    arguments.append(" " + ui->lineEdit_source->text());
-    arguments.append(" " + ui->lineEdit_target->text());
+    if (ui->checkBox_quality->isChecked()) arguments << "-quality" << QString::number(ui->spinBox__quality->value());
+    if (ui->comboBox_compress->currentIndex() != 0) arguments << "-compress" << ui->comboBox_compress->currentText();
+    arguments << ui->lineEdit_source->text();
+    arguments << ui->lineEdit_target->text();
     qDebug() << process.startDetached("convert", arguments);
 }
 
@@ -447,7 +447,11 @@ void QtScanImage::on_toolButton_getSourceFile_clicked()
                                                    | QFileDialog::DontResolveSymlinks);*/
     QString tp = QFileDialog::getOpenFileName(this,"Source file",
                                              ui->label_targetPath->text(),
-                                              "*.pnm, *.jpeg, *.jpg, *.png, *.tif, *.tiff");
+                                              "*.pnm *.jpeg *.jpg *.png *.tif *.tiff");
+    tp.replace(QRegExp("[0-9]"),"*");
     ui->lineEdit_source->setText(tp);
+    tp.replace("*","");
+    tp.replace(tp.lastIndexOf("."),tp.length()-tp.lastIndexOf("."),".pdf");
+    ui->lineEdit_target->setText(tp);
 }
 
